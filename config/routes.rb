@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   resources :posts
 
   # This line mounts Spree's routes at the root of your application.
