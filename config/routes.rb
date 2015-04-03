@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
+
   devise_for :users
-  resources :posts
+  resources :users
+    
+    resources :topics do
+      resources :posts, except: [:index]
+    end
 
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
