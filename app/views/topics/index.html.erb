@@ -6,10 +6,10 @@
 		<div class="media">
 			<div class="media-body">
 				<h4 class="media-heading">
-				<%= link_to topic.name, topic %>
+				<%= link_to (markdown_to_html topic.name), topic %>
 				</h4>
 				<small>
-					<%= topic.description %>
+					<%= markdown_to_html topic.description %>
 				</small>
 			</div>
 		</div>
