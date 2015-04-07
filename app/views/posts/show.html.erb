@@ -7,12 +7,43 @@
 			submitted <%= time_ago_in_words(@post.created_at) %> ago by
 			<%= @post.user.name %>
 		</small>
+		
+		<p><% if policy(@post).edit? %>
+		<%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
+		<% end %>
+
 		<p><%= markdown_to_html @post.body %></p>
+
+		<!-- Comment form !-->
+		<h3> New Comment </h3>
+	
+		<h4> Posting Guidlines </h4>
+		<ul>
+			<li> Carefully check grammar and spelling.</li>
+			<li> Be interesting.</li>
+			<li> Post something useful for our members. </li>
+			<li> Use Markdown to style your Posts. <a href="https://daringfireball.net/projects/markdown/basics">Reference guide</a></li>
+		</ul>
+		
+		<div class="col-md-8">	
+		<%= form_for [@post, Comment.new] do |f| %>
+			
+			<div class="form-group">		
+				<%= f.label :body %>
+				<%= f.text_area :body, class: 'form-control', placeholder: "Enter comment text" %>
+			</div>
+			<div class="form-group">			
+				<%= f.submit "Save", class: 'btn btn-success' %>
+			</div>
+		<% end %>
+		</div>
+		
 	</div>
-	<div class="col-md-4">
-	<% if policy(@post).edit? %>
-	<%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
-	<% end %>
+		
+	
+	<div class="col-md-8" id="comments">
+	<h4> Comments</h4>
+		<%= render :partial => @post.comments %>
 	</div>
 </div>	
 
