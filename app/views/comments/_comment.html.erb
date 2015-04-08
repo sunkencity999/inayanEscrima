@@ -5,5 +5,10 @@
                 </strong>
                 <br/>
                 <%= comment.body %>
+                <% if policy(comment).destroy? %>
+        | <%= link_to "Delete", [@post, comment], method: :delete %>
+      <% end %>
         </p>
 <% end %>
+ 
+ 
