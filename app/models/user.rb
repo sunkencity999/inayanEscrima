@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :posts
-  has_many :comments
+  has_many :comments, dependent: :destroy
+  has_many :votes, dependent: :destroy 
   
     mount_uploader :avatar, AvatarUploader
 
@@ -13,12 +14,12 @@ class User < ActiveRecord::Base
   	role == 'admin'
   end
 
-  def instructor?
-  	role == 'instructor'
+  def platinum?
+  	role == 'platinum'
   end
 
-  def basic?
-  	role == 'basic'
+  def bronze?
+  	role == 'bronze'
   end
 
   def silver?
