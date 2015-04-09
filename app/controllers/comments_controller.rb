@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
       
   	if @comment.save
   		flash[:notice] = "Comment was saved."
-  		redirect_to [@post, @comment]
+  		redirect_to :back
   	else
   		flash[:error] = "There was an error saving the comment. Please try again."
   		render :new
@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
   	
   	if @comment.update_attributes(comment_params)
   		flash[:notice] = "Comment was updated."
-  		redirect_to [@post, @comment] 
+  		redirect_to :back 
   	else
   		flash[:error] = "There was an error saving the comment. Please try again."
   		render :edit

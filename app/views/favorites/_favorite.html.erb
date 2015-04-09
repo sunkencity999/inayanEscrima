@@ -1,0 +1,12 @@
+<div class="favorite">
+
+	<% if favorite = current_user.favorited(post) %>
+		<%= link_to [post, favorite], class: 'btn btn-danger btn-sm', method: :delete do %>
+			<i class="glyphicon glyphicon-star-empty"></i> &nbsp; 
+		<% end %> Unfavorite 
+	<% else %>
+		<%= link_to [post, Favorite.new], class: 'btn btn-primary btn-sm', method: :post do %>
+			<i class="glyphicon glyphicon-star"></i>&nbsp; 
+		<% end %> Favorite
+	<% end %>
+</div>
