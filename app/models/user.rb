@@ -3,11 +3,12 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
+  
   has_many :posts
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy 
   has_many :favorites, dependent: :destroy
+  has_many :topics
   
     mount_uploader :avatar, AvatarUploader
 
@@ -16,23 +17,23 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-  	role == 'admin'
+  	self.role == 'admin'
   end
 
   def platinum?
-  	role == 'platinum'
+  	self.role == 'platinum'
   end
 
   def bronze?
-  	role == 'bronze'
+  	self.role == 'bronze'
   end
 
   def silver?
-  	role == 'silver'
+  	self.role == 'silver'
   end
 
   def gold?
-  	role == 'gold'
+  	self.role == 'gold'
   end
   
   

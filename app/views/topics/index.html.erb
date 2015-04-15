@@ -2,7 +2,8 @@
 
 <div class="row">
 <div class="col-md-8">
-	<% @topics.each do |topic| %>
+	<% if policy(@topics).bronze? %>
+	<% @topics.visible_to_bronze.paginate(page: params[:page], per_page: 10).all.each  do |topic| %>
 		<div class="media">
 			<div class="media-body">
 				<h4 class="media-heading">
@@ -13,9 +14,56 @@
 				</small>
 			</div>
 		</div>
+		<% end %>
 	<% end %>
-		<%= will_paginate @topics %>
+
+<% if policy(@topics).silver? %>
+<% @topics.visible_to_silver.paginate(page: params[:page], per_page: 10).all.each  do |topic| %>
+		<div class="media">
+			<div class="media-body">
+				<h4 class="media-heading">
+				<%= link_to (markdown_to_html topic.name), topic %>
+				</h4>
+				<small>
+					<%= markdown_to_html topic.description %>
+				</small>
+			</div>
+		</div>
+		<% end %>
+	<% end %>
+
+<% if policy(@topics).gold? %>
+<% @topics.visible_to_gold.paginate(page: params[:page], per_page: 10).all.each  do |topic| %>
+		<div class="media">
+			<div class="media-body">
+				<h4 class="media-heading">
+				<%= link_to (markdown_to_html topic.name), topic %>
+				</h4>
+				<small>
+					<%= markdown_to_html topic.description %>
+				</small>
+			</div>
+		</div>
+		<% end %>
+	<% end %>
+
+<% if policy(@topics).platinum? %>
+<% @topics.visible_to_platinum.paginate(page: params[:page], per_page: 10).all.each  do |topic| %>
+		<div class="media">
+			<div class="media-body">
+				<h4 class="media-heading">
+				<%= link_to (markdown_to_html topic.name), topic %>
+				</h4>
+				<small>
+					<%= markdown_to_html topic.description %>
+				</small>
+			</div>
+		</div>
+		<% end %>
+	<% end %>
 </div>
+
+
 <div class="col-md-4">
 	<% if policy(Topic.new).create? %>
 		<%= link_to "New Topic", new_topic_path, class: 'btn btn-success' %>

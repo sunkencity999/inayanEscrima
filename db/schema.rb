@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408232050) do
+ActiveRecord::Schema.define(version: 20150414185244) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -959,7 +959,6 @@ ActiveRecord::Schema.define(version: 20150408232050) do
     t.datetime "reset_password_sent_at"
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
-    t.string   "spree_api_key",          limit: 48
     t.datetime "remember_created_at"
     t.datetime "deleted_at"
     t.string   "confirmation_token"
@@ -969,7 +968,6 @@ ActiveRecord::Schema.define(version: 20150408232050) do
 
   add_index "spree_users", ["deleted_at"], name: "index_spree_users_on_deleted_at"
   add_index "spree_users", ["email"], name: "email_idx_unique", unique: true
-  add_index "spree_users", ["spree_api_key"], name: "index_spree_users_on_spree_api_key"
 
   create_table "spree_variants", force: :cascade do |t|
     t.string   "sku",                                        default: "",    null: false
@@ -1024,10 +1022,17 @@ ActiveRecord::Schema.define(version: 20150408232050) do
   create_table "topics", force: :cascade do |t|
     t.string   "name"
     t.boolean  "public",      default: true
+    t.boolean  "bronze",      default: false
+    t.boolean  "silver",      default: false
+    t.boolean  "gold",        default: false
+    t.boolean  "platinum",    default: false
     t.text     "description"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "user_id"
   end
+
+  add_index "topics", ["user_id"], name: "index_topics_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",   null: false

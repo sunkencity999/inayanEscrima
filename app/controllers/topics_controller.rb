@@ -1,6 +1,7 @@
 class TopicsController < ApplicationController
   def index
-  	@topics = Topic.paginate(page: params[:page], per_page: 10)
+   @topics = Topic.all 
+   
   	authorize @topics 
   end
 
@@ -21,7 +22,7 @@ class TopicsController < ApplicationController
   end
 
   def create
-  	@topic = Topic.new(topic_params)
+  	@topic = current_user.topics.build(topic_params)
   	authorize @topic
   	if @topic.save 
   		redirect_to @topic, notice: "Topic was saved successfully."
@@ -59,7 +60,7 @@ class TopicsController < ApplicationController
   private
 
   def topic_params
-    params.require(:topic).permit(:name, :description, :public)
+    params.require(:topic).permit(:name, :description, :public, :bronze, :silver, :gold, :platinum)
   end
 
 end
