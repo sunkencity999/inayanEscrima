@@ -1,8 +1,8 @@
-<h1> Topics </h1>
+<h1> Member Content </h1>
 
 <div class="row">
 <div class="col-md-8">
-	<% if policy(@topics).bronze? %>
+	<% if current_user.bronze? %>
 	<% @topics.visible_to_bronze.paginate(page: params[:page], per_page: 10).all.each  do |topic| %>
 		<div class="media">
 			<div class="media-body">
@@ -17,7 +17,7 @@
 		<% end %>
 	<% end %>
 
-<% if policy(@topics).silver? %>
+<% if current_user.silver? %>
 <% @topics.visible_to_silver.paginate(page: params[:page], per_page: 10).all.each  do |topic| %>
 		<div class="media">
 			<div class="media-body">
@@ -32,7 +32,7 @@
 		<% end %>
 	<% end %>
 
-<% if policy(@topics).gold? %>
+<% if current_user.gold? %>
 <% @topics.visible_to_gold.paginate(page: params[:page], per_page: 10).all.each  do |topic| %>
 		<div class="media">
 			<div class="media-body">
@@ -47,7 +47,7 @@
 		<% end %>
 	<% end %>
 
-<% if policy(@topics).platinum? %>
+<% if current_user.platinum? %>
 <% @topics.visible_to_platinum.paginate(page: params[:page], per_page: 10).all.each  do |topic| %>
 		<div class="media">
 			<div class="media-body">

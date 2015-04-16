@@ -1,0 +1,9 @@
+<h1> Users </h1>
+
+<p> Only administrators can view and edit user information. </p>
+
+<% if current_user.admin? %>
+<% @users.each do |user|%>
+	<p><%= link_to user.name, user  %></p>
+<% end %>
+<% end %>

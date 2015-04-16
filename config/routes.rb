@@ -2,7 +2,14 @@ Rails.application.routes.draw do
 
 
   devise_for :users
-  resources :users  
+  scope "/admin" do
+    resources :users  
+
+  
+    patch '/users/:id/edit', to: 'users#edit', :as => 'admin/users/edit'
+
+  end
+
 
     
     resources :topics do

@@ -21,20 +21,21 @@ class User < ActiveRecord::Base
   end
 
   def platinum?
-  	self.role == 'platinum'
+  	self.role === 'platinum' || self.role === 'admin'
   end
 
   def bronze?
-  	self.role == 'bronze'
+  	self.role === 'bronze' || self.role === 'silver' || self.role === 'gold' || self.role === 'platinum' || self.role=== 'admin'
   end
 
   def silver?
-  	self.role == 'silver'
+  	self.role === 'silver' || self.role === 'gold' || self.role === 'platinum' || self.role ==='admin'
   end
 
   def gold?
-  	self.role == 'gold'
+  	self.role === 'gold' || self.role === 'platinum' || self.role === 'admin'
   end
   
+   default_scope { order('users.name ASC') }
   
 end
