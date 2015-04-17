@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 
   end
 
-
+    match '/contacts',     to: 'contacts#new',             via: 'get'
+    resources "contacts", only: [:new, :create]
     
     resources :topics do
       resources :posts, except: [:index] 
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
 
       end
    
+  
 
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
@@ -35,8 +37,6 @@ Rails.application.routes.draw do
           get 'home/store'
 
   get 'home/about'
-
-  get 'home/contact'
 
   get 'home/membership'
 

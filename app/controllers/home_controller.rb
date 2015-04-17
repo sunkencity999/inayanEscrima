@@ -9,8 +9,6 @@ class HomeController < ApplicationController
 
   end
 
-  def contact
-  end
 
   def membership
   end
