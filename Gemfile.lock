@@ -471,6 +471,7 @@ DEPENDENCIES
   fog
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   mail_form
   mini_magick
   pg
