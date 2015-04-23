@@ -14,8 +14,9 @@
 			<li> <%= link_to "About", home_about_path %></li>
 			<li> <%= link_to "Membership", home_membership_path %></li>
 			<li> <%= link_to "Contact", contacts_path %></li>
-			<li> <a href="/store">Store</a></li>
-
+			<% if current_user %>
+			<li> <%= link_to "Member Content Area", topics_path %></li>
+			<% end %>	
 			<div class="pull-right user-info">
 				<% if current_user %>
 					<%= image_tag(current_user.avatar.tiny.url) if current_user.avatar? %>
