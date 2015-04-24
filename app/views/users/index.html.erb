@@ -1,9 +1,17 @@
-<h1> Users </h1>
-
-<p> Only administrators can view and edit user information. </p>
-
-<% if current_user.admin? %>
-<% @users.each do |user|%>
-	<p><%= link_to user.name, user  %></p>
-<% end %>
-<% end %>
+<div class="row">
+	<div class="col-md-2">
+	</div>
+	<div class="col-md-8">
+		<center><h1> Users </h1></center>
+		<br/>
+		<h3> Only administrators can view and edit user information. </h3>
+		<br/>
+		<% if current_user.admin? %>	
+		<% @users.each do |user|%>
+		<p><%= link_to user.name, user  %></p>
+		<% end %>
+		<% end %>
+	</div>
+	<div class="col-md-2">
+	</div>
+</div>

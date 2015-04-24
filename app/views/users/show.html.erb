@@ -1,12 +1,18 @@
-<h1> <%= @user.name %></h1>
-
-<h2> Membership Level</h2>
-<p>You are currently subscribed at the "<% print @user.role %>" level.</p>
-
- <%if current_user.role == 'admin' %>
-   	<h3> Edit User Membership Level</h3>
+<div class="row">
+	<div class="col-md-2">
+	</div>
+	<div class="col-md-8">
+		<br/>
+		<center><h1> <%= @user.name %></h1></center>
+		<br/>
+		<h2> Membership Level</h2>
+		<p>Edit user membership below. This will determine what content is available to them.</p>
+		<p> Keep in mind that content is tiered; Silver can see all of Silver and Bronze, Gold can see all of Gold, Silver, and Bronze, etc. </p>
+		<br/>
+ 		<%if current_user.role == 'admin' %>
+   		<h3> Edit User Membership Level</h3>
    
-   	<%= form_for(@user, url: admin_users_edit_path, html: { method: :patch }) do |f| %>  
+   		<%= form_for(@user, url: admin_users_edit_path, html: { method: :patch }) do |f| %>  
 
     <div class="form-group">
     <%= f.label :role %> <%= f.text_field :role, class: 'form-control', placeholder: "Edit Membership Level", autofocus: true %>
@@ -14,10 +20,10 @@
  
   <div class="form-group"> <%= f.submit "Update", class: 'btn btn-success' %>
     </div>
-<% end %>
- <% end %> 
-<h2>Comments</h2>
-
-<%= @user.comments.all.each do |comment| %>
-	<%= comment %>
-<% end %>
+    
+	</div>
+	<div class="col-md-2">
+	</div>
+</div>
+		<% end %>
+		<% end %> 
