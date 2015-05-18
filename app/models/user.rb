@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
   def gold?
   	self.role === 'gold' || self.role === 'platinum' || self.role === 'admin'
   end
+
+  def price
+    return 500
+  end
   
    default_scope { order('users.name ASC') }
   
